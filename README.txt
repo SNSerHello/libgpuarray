@@ -1,4 +1,4 @@
-制作wheel文件
+在Linux下制作wheel文件
   $ mkdir build
   $ cd build
   $ cmake ..
