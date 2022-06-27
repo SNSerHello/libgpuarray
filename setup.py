@@ -77,7 +77,10 @@ if not os.getenv('CONDA_BUILD'):
     current_dir = os.path.abspath(os.path.dirname(__file__))
     include_dirs += [os.path.join(current_dir, 'src')]
 
-    default_bin_dir = os.path.join(current_dir, 'lib')
+    if sys.platform == 'win32':
+        default_bin_dir = os.path.join(current_dir, 'lib{}Release'.format(os.path.sep))
+    else:
+        default_bin_dir = os.path.join(current_dir, 'lib')
     if not os.path.isdir(default_bin_dir):
         raise RuntimeError('default binary dir {} does not exist, you may need to build the C library in release mode'.format(default_bin_dir))
     library_dirs += [default_bin_dir]

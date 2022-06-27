@@ -29,3 +29,12 @@ Install the project...
 -- Installing: /usr/local/lib/libgpuarray.so.3
 -- Installing: /usr/local/lib/libgpuarray.so
 -- Installing: /usr/local/lib/libgpuarray-static.a
+
+在Windows下制作wheel文件
+  $ mkdir build
+  $ cd build
+  $ cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=..\lib ..
+  $ msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 ALL_BUILD.vcxproj
+  $ msbuild /p:Configuration=Release INSTALL.vcxproj
+  $ cd ..
+  $ python3 setup.py bdist_wheel --universal
